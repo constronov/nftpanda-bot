@@ -113,7 +113,7 @@
           .click();
 
         await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
-		*/
+		
 
         buttonSendToAdventure = document.querySelectorAll(
           ".one-slot:not(.no-p):not(.dis)"
@@ -142,6 +142,7 @@
         foodItem.querySelector(".button-name-value").click();
 
         await new Promise((res) => setTimeout(res, PAUSE_BEFORE_CLOSE_POPUP));
+		*/
       }
 
       await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
