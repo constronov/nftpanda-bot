@@ -56,7 +56,7 @@
           .querySelector(".tool-body")
           .textContent.split("/")[0]
       );
-
+	  
       if (button && energy > 5) {
         button.click();
 
@@ -77,7 +77,7 @@
 
       // Check energy
       if (energy <= 5) {
-        console.log("energy", energy);
+        /*
         let rarity = buttonSendToAdventure
           .querySelector("ul li:nth-child(3)")
           .textContent.split(": ")[1]
@@ -85,7 +85,6 @@
         if (rarity === "promo") rarity = "uncommon";
         console.log("rarity", rarity);
         document.querySelector(".menu-will-be .shop").click();
-		document.querySelector(".shafl-tab .eat").click();
 
         const foods = document.querySelectorAll(
           ".shafl-wrap-in .one-shafl-prod .one-shafl-prod-thumb a"
@@ -114,6 +113,7 @@
           .click();
 
         await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
+		*/
 
         buttonSendToAdventure = document.querySelectorAll(
           ".one-slot:not(.no-p):not(.dis)"
