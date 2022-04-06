@@ -4,6 +4,20 @@
   const PAUSE_WAIT_POPUP = 10 * 1000;
   const PAUSE_BEFORE_CLOSE_POPUP = 10 * 1000;
 
+  const mouseClickEvents = ["mousedown", "click", "mouseup"];
+  function simulateMouseClick(element) {
+    mouseClickEvents.forEach((mouseEventType) =>
+      element.dispatchEvent(
+        new MouseEvent(mouseEventType, {
+          view: window,
+          bubbles: true,
+          cancelable: true,
+          buttons: 1,
+        })
+      )
+    );
+  }
+
   while (1) {
     await new Promise((res) => setTimeout(res, PAUSE_TASK));
 
@@ -13,36 +27,61 @@
     );
 
     // Going through all active buttons
-	try {
-		for (let i = 0; i < buttonsSendToAdventure.length; ++i) {
-		  let buttonSendToAdventure = document.querySelectorAll(
-			".one-slot:not(.no-p):not(.dis)"
-		  )[i];
-		  const button = buttonSendToAdventure.querySelector(
-			".one-slot-bt .button-in"
-		  );
+    for (let i = 0; i < buttonsSendToAdventure.length; ++i) {
+      let buttonSendToAdventure = document.querySelectorAll(
+        ".one-slot:not(.no-p):not(.dis)"
+      )[i];
+      const button = buttonSendToAdventure.querySelector(
+        ".one-slot-bt .button-in"
+      );
 
-		  if (button) {
-			button.click();
+      if (button) {
+        button.click();
 
-			// If button "close" in popup visible
-			while (
-			  !document.querySelector(".papper-modal .button-name-in")?.offsetParent
-			) {
-			  await new Promise((res) => setTimeout(res, PAUSE_WAIT_POPUP));
-			}
+        const location = document.querySelector("#group-adv-3.group-adv");
+        if (location) {
+          console.log("Wait location");
+          simulateMouseClick(location);
 
-			await new Promise((res) => setTimeout(res, PAUSE_BEFORE_CLOSE_POPUP));
+          const sendAdventure = document.querySelector(
+            ".modal-to-adv.open.anim.bamb button"
+          );
+			
+		  try {   
+			  if (sendAdventure) {
+				console.log("Wait sendAdventure");
+				sendAdventure.click(); 
 
-			// Click button "close" in popup
-			document.querySelector(".papper-modal .button-name-in").click();
+				// If button "close" in popup visible
+				while (
+				  !document.querySelector(
+					".modal-to-adv.reward-window.open.anim.bamboo-rew button"
+				  )?.offsetParent
+				) {
+				  await new Promise((res) => setTimeout(res, PAUSE_WAIT_POPUP));
+				}
 
-			await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
+				await new Promise((res) =>
+				  setTimeout(res, PAUSE_BEFORE_CLOSE_POPUP)
+				);
+
+				// Click button "close" in popup
+				document
+				  .querySelector(
+					".modal-to-adv.reward-window.open.anim.bamboo-rew button"
+				  )
+				  .click();
+
+				await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
+			  }
 		  }
-
-		  await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
-		}
-	}
-	catch (e) { }
+		  
+		  catch {
+				const backToMenu= document.querySelector(".back-bt");
+				backToMenu.click(); }
+        }
+      }
+      await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
+    }
   }
 })();
