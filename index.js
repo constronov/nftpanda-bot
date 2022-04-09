@@ -2,6 +2,7 @@
     const PAUSE_TASK = 5 * 1000;
     const PAUSE_BUTTON = 5 * 1000;
     const PAUSE_WAIT_POPUP = 10 * 1000;
+    const PAUSE_WAIT_CHOICE = 20 * 1000;
     const PAUSE_BEFORE_CLOSE_POPUP = 10 * 1000;
 
     const mouseClickEvents = ["mousedown", "click", "mouseup"];
@@ -56,7 +57,7 @@
                         // ) {
                         //     await new Promise((res) => setTimeout(res, PAUSE_WAIT_POPUP));
                         // }
-                        await new Promise((res) => setTimeout(res, PAUSE_WAIT_POPUP));
+                        await new Promise((res) => setTimeout(res, PAUSE_WAIT_CHOICE));
                         
                         if (document.querySelector(
                             ".modal-to-adv.reward-window.open.anim.bamboo-rew button"
