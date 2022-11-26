@@ -24,16 +24,16 @@
 
         // Find all active button for mine
         const buttonsSendToAdventure = document.querySelectorAll(
-            ".one-slot:not(.no-p):not(.dis)"
+            'button.bt-graph.send-bt'
         );
 
         // Going through all active buttons
         for (let i = 0; i < buttonsSendToAdventure.length; ++i) {
-            let buttonSendToAdventure = document.querySelectorAll(
-                ".one-slot:not(.no-p):not(.dis)"
-            )[i];
-            const button = buttonSendToAdventure.querySelector(
-                ".one-slot-bt .button-in"
+            // let buttonSendToAdventure = document.querySelectorAll(
+            //     'button.bt-graph.send-bt'
+            // )[i];
+            const button = document.querySelector(
+                'button.bt-graph.send-bt'
             );
 
             if (button) {
