@@ -4,6 +4,7 @@
       if(timer != null && timer.innerText == 'SEND TO ADVENTURE') {
         buttonMint = document.querySelector("#all-slots > div > div.register-alien > div");
         buttonMint.click();
+		await new Promise((res) => setTimeout(res, 1000000));
       }
       await new Promise((res) => setTimeout(res, 1000));
     }
