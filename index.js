@@ -1,12 +1,12 @@
+//clientX: 420,
+//clientY: 380,
 (async () => {
-    const PAUSE_TASK = 5 * 1000;
-    const PAUSE_BUTTON = 5 * 1000;
-    const PAUSE_WAIT_POPUP = 10 * 1000;
-    const PAUSE_WAIT_CHOICE = 20 * 1000;
-    const PAUSE_BEFORE_CLOSE_POPUP = 10 * 1000;
+    const mouseClickEvents = ["mousedown","click", "mouseup"];
+    const PAUSE_BETWEEN = 500;
+    const LOOP = 1000;
+    const PAUSE_MINING = 10000;
 
-    const mouseClickEvents = ["mousedown", "click", "mouseup"];
-    function simulateMouseClick(element) {
+    function simulateMouseClickPosition(element) {
         mouseClickEvents.forEach((mouseEventType) =>
             element.dispatchEvent(
                 new MouseEvent(mouseEventType, {
@@ -14,76 +14,59 @@
                     bubbles: true,
                     cancelable: true,
                     buttons: 1,
+                    clientX: parseFloat(window.getComputedStyle(canvas).width) / 4.4,
+                    clientY: parseFloat(window.getComputedStyle(canvas).height) / 2.58,
                 })
             )
         );
     }
 
     while (1) {
-        await new Promise((res) => setTimeout(res, PAUSE_TASK));
-
-        // Find all active button for mine
-        const buttonsSendToAdventure = document.querySelectorAll(
-            'button.bt-graph.send-bt'
-        );
-
-        // Going through all active buttons
-        for (let i = 0; i < buttonsSendToAdventure.length; ++i) {
-            // let buttonSendToAdventure = document.querySelectorAll(
-            //     'button.bt-graph.send-bt'
-            // )[i];
-            const button = document.querySelector(
-                'button.bt-graph.send-bt'
-            );
-
-            if (button) {
-                button.click();
-
-                const location = document.querySelector("#group-adv-3.group-adv");
-                if (location) {
-                    console.log("Wait location");
-                    simulateMouseClick(location);
-
-                    const sendAdventure = document.querySelector(
-                        ".modal-to-adv.open.anim.bamb button"
-                    );
-                    if (sendAdventure) {
-                        console.log("Wait sendAdventure");
-                        sendAdventure.click();
-
-                        //If button "close" in popup visible
-                        // while (
-                        //     !document.querySelector(".modal-to-adv.reward-window.open.anim.bamboo-rew button")?.offsetParent
-                        // ) {
-                        //     await new Promise((res) => setTimeout(res, PAUSE_WAIT_POPUP));
-                        // }
-                        await new Promise((res) => setTimeout(res, PAUSE_WAIT_CHOICE));
-                        
-                        if (document.querySelector(
-                            ".modal-to-adv.reward-window.open.anim.bamboo-rew button"
-                        )?.offsetParent) 
-                        {
-                            await new Promise((res) =>
-                                setTimeout(res, PAUSE_BEFORE_CLOSE_POPUP)
-                            );
-
-                            // Click button "close" in popup
-                            document
-                                .querySelector(
-                                    ".modal-to-adv.reward-window.open.anim.bamboo-rew button"
-                                )
-                                .click();
-
-                            await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
-                        }
-                        else {
-                            const backToMenu = document.querySelector(".back-bt");
-                            backToMenu.click();
-                        }
-                    }
+        var timer = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-descr > div > div.timer > div.timer-in");
+        if (timer == null) {
+            var btn_sendadventure = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(1) > span");
+            if (btn_sendadventure == null) {
+                // Button "Mass Action"
+                var btn_massaction = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-all-bt.tooltip > span");
+                if (btn_massaction != null) {
+                    btn_massaction.click();
+                    await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
                 }
+                var btn_sendadventure = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(1) > span");
             }
-            await new Promise((res) => setTimeout(res, PAUSE_BUTTON));
+
+            var btn_selectall = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-top > div > div.select-bt > div > button > span");
+            if (btn_selectall != null) {
+                btn_selectall.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+            }
+
+            if (btn_sendadventure != null) {
+                btn_sendadventure.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+            }
+
+            // Select Forest of Ulrian
+            var canvas = document.getElementById("defaultCanvas0");
+            simulateMouseClickPosition(canvas);
+            await new Promise((res) => setTimeout(res, 100));
+            simulateMouseClickPosition(canvas);
+            await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+
+            var confirmadventure = document.querySelector("#root > div > div.modal-to-adv.open.anim.null.bamb > div.modal-to-adv-body.multi > div.modal-to-adv-body-in > div > div.modal-to-adv-bot > div > button > span");
+            if (confirmadventure != null) {
+                confirmadventure.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+            }
+
+            await new Promise((res) => setTimeout(res, PAUSE_MINING));
+
+            var closeadventuretab = document.querySelector("#root > div > div.modal-to-adv.reward-window.open.anim.bamboo-rew > div.modal-to-adv-body > div.modal-to-adv-body-in.multi-rew > div > div.multi-reward-top > div");
+            if (closeadventuretab != null) {
+                closeadventuretab.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+            }
         }
+        await new Promise((res) => setTimeout(res, LOOP));
     }
-})();
+})();    
