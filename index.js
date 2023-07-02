@@ -22,6 +22,98 @@
     }
 
     while (1) {
+        // // Stake and Upgrade
+        // var allSlots = document.querySelectorAll(".one-slot");
+        // if (allSlots != null)
+        // {
+        //     allSlots.forEach((slot) => {
+        //         var btnRank = slot.querySelector("div > div.level-up > button > span > span > span");
+        //         if(btnRank != null) {
+        //             var btnStake = slot.querySelector("div.one-slot-descr > div > div.one-slot-bt > div.bt-top-slot > div:nth-child(2) > button");
+        //             if (btnStake != null) {
+        //                 btnStake.click();
+        //                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+        //                 var stakeAmount = document.querySelector("#root > div > main > div.modal-wrap-stake.open > div.bamb-modal-body > div > div > div > div.bamb-modal-wrap > div > div.stake-body > div.stake-descr > div > div.modal-must-add > span");
+        //                 if (stakeAmount != null) {
+        //                     var stakeAmountInt = Math.ceil(stakeAmount.innerText.replace(" BAM", ""))+5;
+        //                     var stakeTextField = document.querySelector("#root > div > main > div.modal-wrap-stake.open > div.bamb-modal-body > div > div > div > div.bamb-modal-wrap > div > div.stake-body > div.stake-descr > div > div.stake-form-in > div.stake-inp > input[type=number]");
+        //                     // BUG !!!
+        //                     stakeTextField.value = stakeAmountInt;
+        //                     var stakeNowBtn = document.querySelector("#root > div > main > div.modal-wrap-stake.open > div.bamb-modal-body > div > div > div > div.bamb-modal-wrap > div > div.stake-body > div.stake-descr > div > div.stake-form-in > div.stake-btns > div > button > span > span");
+        //                     if (stakeNowBtn != null) {
+        //                         stakeNowBtn.click();
+        //                         await new Promise((res) => setTimeout(res, PAUSE_MINING));
+        //                     }
+        //                     console.log(stakeAmountInt);
+        //                 }
+        //             }
+        //             console.log(slot);
+        //         }
+        //     });
+        // }
+
+        // Restore energy and equipment
+        var energy = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.energy > div.energy-info > div");
+        var jewelry = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-jew.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
+        var weapons = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-weapon.tooltip.active.water.rar-3 > div.cust-tooltip.bottom > div.tool-wrap > div");
+        var armor = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-armor.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
+        
+        // check if mass action is activated
+        var feedbtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(2)");
+        if (feedbtn == null) {
+            // Button "Mass Action"
+            var btn_massaction = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-all-bt.tooltip > span");
+            if (btn_massaction != null) {
+                btn_massaction.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+            }
+            var btn_selectall = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-top > div > div.select-bt > div > button > span");
+            if (btn_selectall != null) {
+                btn_selectall.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+            }
+        }
+        
+        if(energy.innerText == "0%" || jewelry.innerText == "0%" || weapons.innerText == "0%" || armor.innerText == "0%") {
+            // feed all
+            var feedbtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(2) > span");
+            if (feedbtn != null && energy.innerText == "0%") {
+                feedbtn.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+                var acceptfeed = document.querySelector("#thank-modal-shop > div.modal-bay-body > div.modal-bay-body-in > div > div.modal-bay-wrap > div.modal-bay-bt > button > span > span > span > span");
+                acceptfeed.click();
+                await new Promise((res) => setTimeout(res, PAUSE_MINING));
+            }
+            // rep jewelry
+            var repJewBtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(3) > span");
+            if (repJewBtn != null || jewelry.innerText == "0%") {
+                repJewBtn.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+                var acceptjew = document.querySelector("#thank-modal-shop > div.modal-bay-body > div.modal-bay-body-in > div > div.modal-bay-wrap.jew-mod-part-rep > div.ico-weap-energy > button > span > span > span > span");
+                acceptjew.click();
+                await new Promise((res) => setTimeout(res, PAUSE_MINING));
+            }
+            // rep wapons
+            var repWeponsBtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(4) > span");
+            if (repWeponsBtn != null || weapons.innerText == "0%") {
+                repWeponsBtn.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+                var acceptweapon = document.querySelector("#thank-modal-shop > div.modal-bay-body > div.modal-bay-body-in > div > div.modal-bay-wrap > div.ico-weap-energy > button > span > span > span > span");
+                acceptweapon.click();
+                await new Promise((res) => setTimeout(res, PAUSE_MINING));
+            }
+            // rep armor
+            var repArmorBtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(5) > span");
+            if (repArmorBtn != null || armor.innerText == "0%") {
+                repArmorBtn.click();
+                await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+                var acceptarmor = document.querySelector("#thank-modal-shop > div.modal-bay-body > div.modal-bay-body-in > div > div.modal-bay-wrap > div.ico-weap-energy > button > span > span > span > span");
+                acceptarmor.click();
+                await new Promise((res) => setTimeout(res, PAUSE_MINING));
+            }
+        }
+
+        // Manage Adventure
         var timer = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-descr > div > div.timer > div.timer-in");
         if (timer == null) {
             var btn_sendadventure = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(1) > span");
