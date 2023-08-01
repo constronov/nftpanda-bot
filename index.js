@@ -26,10 +26,10 @@
         // var allSlots = document.querySelectorAll(".one-slot");
         // if (allSlots != null)
         // {
-        //     allSlots.forEach((slot) => {
-        //         var btnRank = slot.querySelector("div > div.level-up > button > span > span > span");
+        //     for (let i = 0; i < allSlots.length; i++) {
+        //         var btnRank = allSlots[i].querySelector("div > div.level-up > button > span > span > span");
         //         if(btnRank != null) {
-        //             var btnStake = slot.querySelector("div.one-slot-descr > div > div.one-slot-bt > div.bt-top-slot > div:nth-child(2) > button");
+        //             var btnStake = allSlots[i].querySelector("div.one-slot-descr > div > div.one-slot-bt > div.bt-top-slot > div:nth-child(2) > button");
         //             if (btnStake != null) {
         //                 btnStake.click();
         //                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
@@ -49,11 +49,11 @@
         //             }
         //             console.log(slot);
         //         }
-        //     });
+        //     };
         // }
 
         // Restore energy and equipment
-        var energy = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.energy > div.energy-info > div");
+        var energy = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.energy > div.energy-info > div > span");   
         var jewelry = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-jew.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
         var weapons = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-weapon.tooltip.active.water.rar-3 > div.cust-tooltip.bottom > div.tool-wrap > div");
         var armor = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-armor.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
@@ -145,7 +145,7 @@
             simulateMouseClickPosition(canvas);
             await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
 
-            var confirmadventure = document.querySelector("#root > div > div.modal-to-adv.open.anim.null.bamb > div.modal-to-adv-body.multi > div.modal-to-adv-body-in > div > div.modal-to-adv-bot > div > button > span");
+            var confirmadventure = document.querySelector("#root > div > div.modal-to-adv.open.anim.anim.bamb > div.modal-to-adv-body.multi > div.modal-to-adv-body-in > div > div.modal-to-adv-bot > div > button > span > span > span > span");
             if (confirmadventure != null) {
                 confirmadventure.click();
                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
