@@ -51,12 +51,6 @@
         //         }
         //     };
         // }
-
-        // Restore energy and equipment
-        var energy = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.energy > div.energy-info > div > span");   
-        var jewelry = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-jew.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
-        var weapons = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-weapon.tooltip.active.water.rar-3 > div.cust-tooltip.bottom > div.tool-wrap > div");
-        var armor = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-armor.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
         
         // check if mass action is activated
         var feedbtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(2)");
@@ -73,11 +67,17 @@
                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
             }
         }
+
+        // Restore energy and equipment
+        var energy = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.energy > div.energy-info > div > span");   
+        var jewelry = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-jew.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
+        var weapons = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-weapon.tooltip.active.water.rar-3 > div.cust-tooltip.bottom > div.tool-wrap > div");
+        var armor = document.querySelector("#all-slots > div > div > div:nth-child(1) > div > div.one-slot-body > div.one-slot-nft-card > div > div.img-slot > div.adv-armor.active.tooltip.water.rar-2 > div.cust-tooltip.bottom > div.tool-wrap > div > div > div");
         
-        if(energy.innerText == "0%" || jewelry.innerText == "0%" || weapons.innerText == "0%" || armor.innerText == "0%") {
+        if(energy.innerText == "0" || jewelry.innerText == "0%" || weapons.innerText == "0%" || armor.innerText == "0%") {
             // feed all
             var feedbtn = document.querySelector("#root > div > main > div.send-all-wrap > div > div.send-wrap.active > div.send-all-bot > div > div:nth-child(2) > span");
-            if (feedbtn != null && energy.innerText == "0%") {
+            if (feedbtn != null && energy.innerText == "0") {
                 feedbtn.click();
                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
                 var acceptfeed = document.querySelector("#thank-modal-shop > div.modal-bay-body > div.modal-bay-body-in > div > div.modal-bay-wrap > div.modal-bay-bt > button > span > span > span > span");
