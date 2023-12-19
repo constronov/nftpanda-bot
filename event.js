@@ -1,7 +1,7 @@
 (async () => {
     while (1) {
-      timer = document.querySelector("#all-slots > div > div.all-slots-in > div:nth-child(1) > div > div.one-alien-slot > div.descr-slot > div.timer-alien > div.timer-alien-in");
-      if(timer != null && timer.innerText == 'SEND TO ADVENTURE') {
+      timer = document.querySelector("#all-slots > div > div.all-slots-in > div:nth-child(1) > div > div.one-alien-slot > div.descr-slot > div.alien-send > div");
+      if(timer != null) {
         buttonMint = document.querySelector("#all-slots > div > div.register-alien > div");
         buttonMint.click();
         await new Promise((res) => setTimeout(res, 1000));
@@ -15,4 +15,3 @@
       await new Promise((res) => setTimeout(res, 1000));
     }
   })();
-  
