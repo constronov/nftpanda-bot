@@ -6,7 +6,7 @@
     const LOOP = 1000;
     const PAUSE_MINING = 10000;
 
-    function simulateMouseClickPosition(element) {
+    function simulateMouseClickPosition(element, x, y) {
         mouseClickEvents.forEach((mouseEventType) =>
             element.dispatchEvent(
                 new MouseEvent(mouseEventType, {
@@ -14,8 +14,8 @@
                     bubbles: true,
                     cancelable: true,
                     buttons: 1,
-                    clientX: parseFloat(window.getComputedStyle(canvas).width) / 4.4,
-                    clientY: parseFloat(window.getComputedStyle(canvas).height) / 2.58,
+                    clientX: parseFloat(window.getComputedStyle(canvas).width) / x,
+                    clientY: parseFloat(window.getComputedStyle(canvas).height) / y,
                 })
             )
         );
@@ -138,12 +138,40 @@
                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
             }
 
-            // Select Forest of Ulrian
+            // Select randomly the destination
             var canvas = document.getElementById("defaultCanvas0");
-            simulateMouseClickPosition(canvas);
+            var rand = Math.round(Math.random() * (3 - 1)) + 1;
+            var x = 4.4;
+            var y = 2.58;
+            if (rand == 1) {
+                // Select Forest of Ulrian
+                x = 4.4;
+                y = 2.58;
+            }
+            else if (rand == 2) {
+                // Select Forest of Nyoron (Material)
+                x = 3.0;
+                y = 2.78;
+            }
+            else if (rand == 3) {
+                // Cave of Terrabarium (Jewelry)
+                x = 5.0;
+                y = 4.5;
+            }
+
+            simulateMouseClickPosition(canvas, x, y);
             await new Promise((res) => setTimeout(res, 100));
-            simulateMouseClickPosition(canvas);
+            simulateMouseClickPosition(canvas, x, y);
             await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
+
+            // Select Forest of Ulrian
+            // simulateMouseClickPosition(canvas, 4.4, 2.58);
+
+            // Select Forest of Nyoron (Material)
+            // simulateMouseClickPosition(canvas, 3.0, 2.78);
+
+            // Cave of Terrabarium (Jewelry)
+            // simulateMouseClickPosition(canvas, 5.0, 4.5);
 
             var confirmadventure = document.querySelector("#root > div > div.modal-to-adv.open.anim.anim.bamb > div.modal-to-adv-body.multi > div.modal-to-adv-body-in > div > div.modal-to-adv-bot > div > button > span > span > span > span");
             if (confirmadventure != null) {
