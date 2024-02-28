@@ -141,8 +141,8 @@
             // Select randomly the destination
             var canvas = document.getElementById("defaultCanvas0");
             var rand = Math.round(Math.random() * (3 - 1)) + 1;
-            var x = 4.4;
-            var y = 2.58;
+            let x = 4.4;
+            let y = 2.58;
             if (rand == 1) {
                 // Select Forest of Ulrian
                 x = 4.4;
