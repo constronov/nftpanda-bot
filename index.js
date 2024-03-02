@@ -173,7 +173,7 @@
             // Cave of Terrabarium (Jewelry)
             // simulateMouseClickPosition(canvas, 5.0, 4.5);
 
-            var confirmadventure = document.querySelector("#root > div > div.modal-to-adv.open.anim.anim.bamb > div.modal-to-adv-body.multi > div.modal-to-adv-body-in > div > div.modal-to-adv-bot > div > button > span > span > span > span");
+            var confirmadventure = document.querySelector("div.modal-to-adv-bot > div > button");
             if (confirmadventure != null) {
                 confirmadventure.click();
                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
@@ -181,7 +181,7 @@
 
             await new Promise((res) => setTimeout(res, PAUSE_MINING));
 
-            var closeadventuretab = document.querySelector("#root > div > div.modal-to-adv.reward-window.open.anim.bamboo-rew > div.modal-to-adv-body > div.modal-to-adv-body-in.multi-rew > div > div.multi-reward-top > div");
+            var closeadventuretab = document.querySelector("div.multi-reward-top > div");
             if (closeadventuretab != null) {
                 closeadventuretab.click();
                 await new Promise((res) => setTimeout(res, PAUSE_BETWEEN));
