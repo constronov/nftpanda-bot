@@ -5,6 +5,9 @@
     const PAUSE_BETWEEN = 500;
     const LOOP = 1000;
     const PAUSE_MINING = 10000;
+    const ULRIAN = 50; // BAM x = [1 - ULRIAN]
+    const NYORON = 30; // MATERIAL ]ULRIAN - ULRIAN + NYORON] 
+    const TERRABARIUM = 20; // ]ULRIAN + NYORON - 100]
 
     function simulateMouseClickPosition(element, x, y) {
         mouseClickEvents.forEach((mouseEventType) =>
@@ -140,20 +143,20 @@
 
             // Select randomly the destination
             var canvas = document.getElementById("defaultCanvas0");
-            var rand = Math.round(Math.random() * (3 - 1)) + 1;
+            var rand = Math.round(Math.random() * (100 - 1)) + 1;
             let x = 4.4;
             let y = 2.58;
-            if (rand == 1) {
+            if (rand <= ULRIAN) {
                 // Select Forest of Ulrian
                 x = 4.4;
                 y = 2.58;
             }
-            else if (rand == 2) {
+            else if (rand <= ULRIAN + NYORON) {
                 // Select Forest of Nyoron (Material)
                 x = 3.0;
                 y = 2.78;
             }
-            else if (rand == 3) {
+            else {
                 // Cave of Terrabarium (Jewelry)
                 x = 5.0;
                 y = 4.5;
