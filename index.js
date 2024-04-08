@@ -6,8 +6,8 @@
     const LOOP = 1000;
     const PAUSE_MINING = 10000;
     const ULRIAN = 50; // BAM x = [1 - ULRIAN]
-    const NYORON = 30; // MATERIAL ]ULRIAN - ULRIAN + NYORON] 
-    const TERRABARIUM = 20; // ]ULRIAN + NYORON - 100]
+    const NYORON = 50; // MATERIAL ]ULRIAN - ULRIAN + NYORON] 
+    const TERRABARIUM = 0; // ]ULRIAN + NYORON - 100]
 
     function simulateMouseClickPosition(element, x, y) {
         mouseClickEvents.forEach((mouseEventType) =>
